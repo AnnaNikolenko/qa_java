@@ -2,4 +2,4 @@
 QA Java Project
 ## Sprint 2
 Final project 
-Author Anna Nikolenko
+Author: Anna Nikolenko
