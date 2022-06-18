@@ -4,3 +4,6 @@ Sprint 2
 Final project 
 Author: Anna Nikolenko
 ## Autotests
+Unit tests
+Mocks
+Parametrized tests
