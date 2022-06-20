@@ -22,7 +22,7 @@ public class LionTest {
         String invalidSex= "Тест";
         Exception actualException = null;
         try {
-            new Lion(invalidSex, feline);
+            new Lion(invalidSex, new Feline());
         } catch (Exception e){
             actualException = e;
         }
@@ -35,47 +35,47 @@ public class LionTest {
 
     // метод объявленный в классе Lion и зависимый от класа Feline
     @Test
-    public void getKittensTest1() {
-        Lion lion = new Lion(new Feline());
+    public void getKittensTestWithValidData() throws Exception {
+        Lion lion = new Lion("Самец", new Feline());
         int expected = 1;
         assertEquals(expected, lion.getKittens());
     }
 
-    // метод объявленный в классе Lion и зависимый от класа Feline
+    // метод объявленный в классе Lion и зависимый от класса Feline
     @Test
-    public void getKittensTest2() {
+    public void getKittensTestWithInvalidAnswerFromFelineGetKittens() {
         try{
-            Lion lion = new Lion(feline);
+            Lion lion = new Lion("Самка", feline);
             int expected = 1;
             //тут вернем невалидное значение
             Mockito.when(feline.getKittens()).thenReturn(2112);
             assertEquals(expected, lion.getKittens());
-        } catch(AssertionError e) {
-            System.out.println("AssertionError в тесте getKittensTest2 класса LionTest");
+        } catch(AssertionError | Exception e) {
+            System.out.println("AssertionError в тесте getKittensTestWithInvalidAnswer класса LionTest");
         }
     }
 
     //метод, объявленный в Lion и зависимый от Feline
     @Test
-    public void getFoodTest1() throws Exception {
-        try {
-            Lion lion = new Lion();
+    public void getFoodTest() throws Exception {
+            Lion lion = new Lion("Самец", new Feline());
             List<String> expected = List.of("Животные", "Птицы", "Рыба");
-            //здесь должно быть исключение, так как в коде ошибка:
             assertEquals(expected, lion.getFood());
-        } catch(AssertionError e) {
-            System.out.println("AssertionError в тесте getFoodTest1 класса LionTest");
-        }
     }
 
     //метод, объявленный в Lion и зависимый от Feline
     @Test
-    public void getFoodTest2() throws Exception {
-        Lion lion = new Lion(feline);
-        List<String> expected = List.of("Животные", "Птицы", "Рыба");
-        //а здесь вернем валидный ответ
-        Mockito.when(feline.getFood("Хищник")).thenReturn(List.of("Животные", "Птицы", "Рыба"));
-        assertEquals(expected, lion.getFood());
+    public void getFoodTestWithInvalidAnswerFromFelineGetFood() throws Exception {
+        try {
+            Lion lion = new Lion("Самка", feline);
+            List<String> expected = List.of("Животные", "Птицы", "Рыба");
+            //а здесь вернем невалидный ответ
+            Mockito.when(feline.getFood("Хищник")).thenReturn(List.of("Море", "Солнце", "Пляж"));
+            assertEquals(expected, lion.getFood());
+        } catch (AssertionError e){
+            System.out.println("AssertionError в тесте getFoodTestWithInvalidAnswerFromFelineGetFood класса LionTest");
+        }
+
     }
 }
 

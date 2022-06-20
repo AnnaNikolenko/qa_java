@@ -24,7 +24,7 @@ public class CatTest {
 
     //метод, объявленный в классе Cat, зависимый от класса Feline
     @Test
-    public void getFoodTest1() throws Exception {
+    public void getFoodTest() throws Exception {
         //внедрили зависимость через конструктор
         Cat cat = new Cat(new Feline());
         //объявили ожидаемый результат
@@ -33,7 +33,7 @@ public class CatTest {
         assertEquals(expected, cat.getFood()); }
 
     @Test
-    public void getFoodTest2() throws Exception {
+    public void getFoodTestWithInvalidAnswerFromFelineEatMeat() throws Exception {
             try{
                 //использовали мок
                 Cat cat = new Cat(feline);
@@ -44,7 +44,7 @@ public class CatTest {
                 //сверили результат с ожидаемым
                 assertEquals(expected, cat.getFood());
             } catch (AssertionError e){
-                System.out.println("Ошибка AssertionError в тесте getFoodTest2");
+                System.out.println("Ошибка AssertionError в тесте getFoodTestWithInvalidAnswerFromFelineEatMeat класса CatTest");
             }
 
     }

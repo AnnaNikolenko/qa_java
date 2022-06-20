@@ -20,7 +20,7 @@ public class AnimalTest {
         try {
             Assert.assertNotNull(actualException);
         } catch (AssertionError e){
-            System.out.println("Ожидаемое исключение AssertionError в тесте expectedExceptionTest");
+            System.out.println("Ожидаемое исключение AssertionError в тесте expectedExceptionTest класса AnimalTest");
         }
 
     }

@@ -22,7 +22,7 @@ public class ParametrizedAnimalTest {
     }
 
     // метод для получения тестовых данных
-    @Parameterized.Parameters
+    @Parameterized.Parameters(name = "{index} ==> Тестовые данные: {0} Ответ: {1}")
     public static Object[][] getTestData(){
         return new Object[][]{
                 {"Травоядное", List.of("Трава", "Различные растения")},

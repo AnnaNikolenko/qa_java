@@ -22,7 +22,7 @@ public class ParametrizedLionTest {
     }
 
     // метод для получения тестовых данных
-    @Parameterized.Parameters
+    @Parameterized.Parameters(name = "{index} ==> Тестовые данные: {0} Ответ: {1}")
     public static Object[][] getTestData(){
         return new Object[][]{
                 {"Самец", true },
