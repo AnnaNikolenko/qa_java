@@ -5,13 +5,11 @@ import java.util.List;
 public class Lion {
     boolean hasMane;
     Feline feline;
-    Animal animal;
 
-    List<String> result;
-
-    //Создан конструктор с двумя параметрами
+    //Создан конструктор с тремя параметрами
     public Lion(String sex, Feline feline) throws Exception {
         try {
+            boolean hasMane;
             if ("Самец".equals(sex)) {
                 hasMane = true;
             } else if ("Самка".equals(sex)) {
@@ -20,19 +18,13 @@ public class Lion {
                 throw new Exception();
             }
             this.feline = feline;
+            this.hasMane = hasMane;
 
         } catch (Exception e) {
             System.out.println("Используйте допустимые значения пола животного - самец или самка");
         }
 
     }
-
-    //внедрение зависимости feline через конструктор
-    public Lion(Feline feline) {
-        this.feline = feline;
-    }
-
-    public Lion() {}
 
     //объявили метод
     public int getKittens() {
@@ -46,13 +38,6 @@ public class Lion {
 
     //объявили метод
     public List<String> getFood() throws Exception {
-        try {
             return feline.getFood("Хищник");
-        }
-        catch (Exception e){
-            System.out.println("Ошибка при вызове функции getFood в классе Lion");
-            return null;
-        }
-
     }
 }
