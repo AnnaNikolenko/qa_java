@@ -1,24 +1,23 @@
 package ru.praktikum_services.qa_scooter;
 
+import io.qameta.allure.junit4.DisplayName;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
-import ru.praktikum_services.qa_scooter.pojo.ApiClient;
-import ru.praktikum_services.qa_scooter.pojo.GetOrders;
+import ru.praktikum_services.qa_scooter.pojo.Client.ApiClient;
+import ru.praktikum_services.qa_scooter.pojo.Model.GetOrders;
 
 public class GetOrdersTest {
     private ApiClient client;
-    private Integer clientId;
 
     @Before
-    public void setUp(){
+    public void setUp() {
         client = new ApiClient();
     }
 
-    /** Получить список заказов */
     @Test
+    @DisplayName("Получить список заказов")
     public void getOrderListTest() {
-
         final GetOrders responseAllOrders = client.getOrders()
                 .then()
                 .statusCode(200) //проверка, что возвращается код 200
@@ -28,5 +27,4 @@ public class GetOrdersTest {
         Assert.assertNotNull(responseAllOrders.getPageInfo());
         Assert.assertNotNull(responseAllOrders.getAvailableStations());
     }
-
 }
